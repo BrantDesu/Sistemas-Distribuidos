@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  server:
+    build: server/
+    command: python ./Server.py
+    ports:
+      - 5000:5000
+    container_name: actividad1_server
+  client:
+    build: client/
+    command: python ./Client.py
+    network_mode: host
+    depends_on:
+      - server
+    container_name: actividad1_cliente
+    stdin_open: true
+    tty: true
